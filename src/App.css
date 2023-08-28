@@ -135,15 +135,33 @@ body::-webkit-scrollbar {
     text-transform: uppercase;
     background-color: var(--black--first);
     border: 3px solid var(--main-black);
+    border-radius: 10%;
 }
 
 .Calculator-Button > Button:hover {
     border: none;
-    background-color: rgba(5, 255, 226, 0.442) !important;
+    background-color: rgba(5, 255, 226, 0.34) !important;
+}
+
+.Calculator-Button > Button.Top-Btn:hover {
+    background-color: var(--black--first);
+    color: #ffffff;
+    border-radius: 20%;
+}
+
+.Calculator-Button > Button.Normal-Btn:hover {
+    background-color: var(--black--second);
+    border-radius: 50%;
+}
+
+.Calculator-Button > Button.Special-Btn:hover {
+    background-color: var(--black--first);
+    border-radius: 30%;
 }
 
 .Calculator-Button > Button.Top-Btn {
     background-color: var(--black--first);
+    color: #e50035;
 }
 
 .Calculator-Button > Button.Normal-Btn {
@@ -164,3 +182,9 @@ button {
 Button.Special-Btn {
     background-color: var(--default-color);
 } 
+
+.Calculator-Wrapper {
+    display: grid;
+    height: 100%;
+    grid-auto-rows: 10% 28% 11% 51%;
+}
