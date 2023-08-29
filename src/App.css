@@ -41,7 +41,7 @@ body::-webkit-scrollbar {
     justify-content: center;
     padding: 0.5rem;
     max-width: 750px;
-    margin: 0px auto 0px auto;
+    margin: 20px auto 0px auto;
     
 }
 
@@ -50,7 +50,7 @@ body::-webkit-scrollbar {
     width: 330px;
     background-color: var(--main-black);
     border-radius: 0.5rem;
-    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 5px 10px 10px rgba(0, 0, 0, 0.5);
 }
 
 .Aligned{
@@ -93,6 +93,17 @@ body::-webkit-scrollbar {
     color: var(--white);
     font-weight: 900;
     max-width: 300px;   /*after all compilation we need to comment off */
+}
+
+.Calculator-Output span{
+    letter-spacing: 0.1rem;
+    color: var(--default-text-color);
+    word-wrap: break-word;
+    word-break: break-all;
+    grid-column: span 2;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 .Calculator-Input {
@@ -155,8 +166,9 @@ body::-webkit-scrollbar {
 }
 
 .Calculator-Button > Button.Special-Btn:hover {
-    background-color: var(--black--first);
+    background-color: rgba(236, 26, 78, 0.645) !important;
     border-radius: 30%;
+    
 }
 
 .Calculator-Button > Button.Top-Btn {
@@ -185,6 +197,10 @@ Button.Special-Btn {
 
 .Calculator-Wrapper {
     display: grid;
-    height: 100%;
+    height: 100%; 
     grid-auto-rows: 10% 28% 11% 51%;
+}
+
+@media screen and (max-height: 868px) {
+    
 }
