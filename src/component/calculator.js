@@ -3,6 +3,7 @@ import { Button } from "react-bootstrap";
 import { FaBackspace } from "react-icons/fa";
 import { FaDivide } from "react-icons/fa";
 
+
 function Calculator() {
     const [input, setInput] = useState("");
 
@@ -11,6 +12,15 @@ function Calculator() {
         setInput((input) => input + value);
         console.log(input)
     }
+
+    const Set=()=>{
+        setInput((input.slice(0,-1)))
+    }
+
+    const Clear=()=>{
+        setInput("")
+    }
+
 
     return ( 
     <div className = 'Calculator' >
@@ -22,7 +32,6 @@ function Calculator() {
             <div className='Calculator-Screen Aligned'>
                 <div className='Calculator-Output'>
                     <span>
-                    {input ? input: "0"}
 
                     </span>
                 </div>
@@ -38,7 +47,7 @@ function Calculator() {
 
                 <div className='Calculator-Button'>
                 {/* First line */}
-                    <Button type='button' className='Top-Btn' value="AC">
+                    <Button type='button' className='Top-Btn' value="AC" onClick={Clear}>
                         AC
                     </Button>
                     <Button type='button' className='Top-Btn' value="PM">
@@ -47,7 +56,7 @@ function Calculator() {
                     <Button type='button' className='Top-Btn' value="%" onClick={handleInput}>
                         %
                     </Button>
-                    <Button type='button' className='Special-Btn' value="">
+                    <Button type='button' className='Special-Btn' value="" onClick={Set}>
                         <FaBackspace/>
                     </Button>
              {/* Second line */}
@@ -60,7 +69,7 @@ function Calculator() {
                     <Button type='button' className='Normal-Btn' value="9" onClick={handleInput}>
                         9
                     </Button>
-                    <Button type='button' className='Special-Btn' value="x" onClick={handleInput}>
+                    <Button type='button' id="Multi" className='Special-Btn' value="*">
                         x
                     </Button>
                 {/* Third Line */}
@@ -87,10 +96,10 @@ function Calculator() {
                         3
                     </Button>
                     <Button type='button' className='Special-Btn' value="-" onClick={handleInput}>
-                        -
+                        _ 
                     </Button>
                 {/* Fifth line */}
-                    <Button type='button' className='Normal-Btn' value="." onClick={handleInput}>
+                    <Button type='button' className='Special-Btn' value="." onClick={handleInput}>
                         .
                     </Button>
                     <Button type='button' className='Normal-Btn' value="0" onClick={handleInput}>
