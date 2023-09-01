@@ -6,7 +6,6 @@
     --black--first: #363e4d;
     --black--second: #242933;
     --main-black: #161a20;
-    --default-font-family: ;
 }
 
 * {
@@ -29,6 +28,7 @@ body {
     justify-content: center;
     align-items: center;
     grid-template-columns: 100%;
+    background-image: linear-gradient(to top right,rgb(21, 156, 93),rgb(228, 21, 70));
 }
 
 body::-webkit-scrollbar {
@@ -41,7 +41,7 @@ body::-webkit-scrollbar {
     justify-content: center;
     padding: 0.5rem;
     max-width: 750px;
-    margin: 20px auto 0px auto;
+    margin: 20px auto 29px auto;
     
 }
 
@@ -199,8 +199,4 @@ Button.Special-Btn {
     display: grid;
     height: 100%; 
     grid-auto-rows: 10% 28% 11% 51%;
-}
-
-@media screen and (max-height: 868px) {
-    
 }

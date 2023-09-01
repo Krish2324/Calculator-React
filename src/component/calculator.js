@@ -1,11 +1,10 @@
 import React, {useState} from 'react';
 import { Button } from "react-bootstrap";
 import { FaBackspace } from "react-icons/fa";
-import { FaDivide } from "react-icons/fa";
-
 
 function Calculator() {
     const [input, setInput] = useState("");
+    const [output, setOutput] = useState("");
 
     const handleInput =(e) => {
         const value = e.target.value;
@@ -13,12 +12,33 @@ function Calculator() {
         console.log(input)
     }
 
-    const Set=()=>{
-        setInput((input.slice(0,-1)))
+
+    const handleArithmeticOperator=(e)=>{
+        const value = e.target.value;
+
+            if(value == "="){
+                if(input){
+                    setOutput(eval(input));
+                    setInput("");
+                }
+                
+            }else if (value == "AC"){
+                setInput("");
+                setOutput("");
+            }
+
+            else if (value == "PM"){
+                if (input) {
+                    let Check = eval(input);
+                    setInput(Check !== 0 ? (Check > 0? `-${Check}` : `${Math.abs(Check)}` ) :"");
+                }
+            }
     }
 
-    const Clear=()=>{
-        setInput("")
+    const handleBackspace=()=>{
+        if (input.length > 0) {
+        setInput((input)=>input.slice(0,-1))            
+        }
     }
 
 
@@ -32,7 +52,7 @@ function Calculator() {
             <div className='Calculator-Screen Aligned'>
                 <div className='Calculator-Output'>
                     <span>
-
+                    {output}
                     </span>
                 </div>
             </div>
@@ -47,16 +67,16 @@ function Calculator() {
 
                 <div className='Calculator-Button'>
                 {/* First line */}
-                    <Button type='button' className='Top-Btn' value="AC" onClick={Clear}>
+                    <Button type='button' className='Top-Btn' value="AC" onClick={handleArithmeticOperator}>
                         AC
                     </Button>
-                    <Button type='button' className='Top-Btn' value="PM">
+                    <Button type='button' className='Top-Btn' value="PM" onClick={handleArithmeticOperator}>
                         +/-
                     </Button>
                     <Button type='button' className='Top-Btn' value="%" onClick={handleInput}>
                         %
                     </Button>
-                    <Button type='button' className='Special-Btn' value="" onClick={Set}>
+                    <Button type='button' className='Special-Btn' value="" onClick={handleBackspace}>
                         <FaBackspace/>
                     </Button>
              {/* Second line */}
@@ -69,8 +89,8 @@ function Calculator() {
                     <Button type='button' className='Normal-Btn' value="9" onClick={handleInput}>
                         9
                     </Button>
-                    <Button type='button' id="Multi" className='Special-Btn' value="*">
-                        x
+                    <Button type='button' className='Special-Btn' value="*" onClick={handleInput}>
+                        X
                     </Button>
                 {/* Third Line */}
                     <Button type='button' className='Normal-Btn' value="4" onClick={handleInput}>
@@ -82,8 +102,8 @@ function Calculator() {
                     <Button type='button' className='Normal-Btn' value="6" onClick={handleInput}>
                         6
                     </Button>
-                    <Button type='button' className='Special-Btn' value="">
-                        <FaDivide/>
+                    <Button type='button' className='Special-Btn' value="/" onClick={handleInput}>
+                        ÷
                     </Button>
                 {/* Fourth Line */}
                     <Button type='button' className='Normal-Btn' value="1" onClick={handleInput}>
@@ -108,7 +128,7 @@ function Calculator() {
                     <Button type='button' className='Special-Btn' value="+" onClick={handleInput}>
                         +
                     </Button>
-                    <Button type='button' className='Special-Btn' value="=">
+                    <Button type='button' className='Special-Btn' value="=" onClick={handleArithmeticOperator}>
                         =
                     </Button>
                 </div>
