@@ -16,21 +16,32 @@ function Calculator() {
     const handleArithmeticOperator=(e)=>{
         const value = e.target.value;
 
-            if(value == "="){
+            if(value === "="){
                 if(input){
                     setOutput(eval(input));
                     setInput("");
                 }
                 
-            }else if (value == "AC"){
+            }else if (value === "AC"){
                 setInput("");
                 setOutput("");
             }
 
-            else if (value == "PM"){
+            else if (value === "PM"){
                 if (input) {
                     let Check = eval(input);
                     setInput(Check !== 0 ? (Check > 0? `-${Check}` : `${Math.abs(Check)}` ) :"");
+                }
+            }
+
+            else if(["+","-","/","*","."].includes(value)){
+                if(input){
+                    const LastChar = input.slice(-1);
+                    if(["+","-","/","*","."].includes(LastChar)){
+                        setInput(input.slice(0,-1) + value)
+                    }else{
+                        setInput(input + value)
+                    }
                 }
             }
     }
@@ -89,7 +100,7 @@ function Calculator() {
                     <Button type='button' className='Normal-Btn' value="9" onClick={handleInput}>
                         9
                     </Button>
-                    <Button type='button' className='Special-Btn' value="*" onClick={handleInput}>
+                    <Button type='button' className='Special-Btn' value="*" onClick={handleArithmeticOperator}>
                         X
                     </Button>
                 {/* Third Line */}
@@ -102,7 +113,7 @@ function Calculator() {
                     <Button type='button' className='Normal-Btn' value="6" onClick={handleInput}>
                         6
                     </Button>
-                    <Button type='button' className='Special-Btn' value="/" onClick={handleInput}>
+                    <Button type='button' className='Special-Btn' value="/" onClick={handleArithmeticOperator}>
                         ÷
                     </Button>
                 {/* Fourth Line */}
@@ -115,19 +126,19 @@ function Calculator() {
                     <Button type='button' className='Normal-Btn' value="3" onClick={handleInput}>
                         3
                     </Button>
-                    <Button type='button' className='Special-Btn' value="-" onClick={handleInput}>
+                    <Button type='button' className='Special-Btn' value="-" onClick={handleArithmeticOperator}>
                         _ 
                     </Button>
                 {/* Fifth line */}
-                    <Button type='button' className='Special-Btn' value="." onClick={handleInput}>
+                    <Button type='button' className='Special-Btn' value="." onClick={handleArithmeticOperator}>
                         .
                     </Button>
                     <Button type='button' className='Normal-Btn' value="0" onClick={handleInput}>
                         0
                     </Button>
-                    <Button type='button' className='Special-Btn' value="+" onClick={handleInput}>
+                    <Button type='button' className='Special-Btn' value="+" onClick={handleArithmeticOperator}>
                         +
-                    </Button>
+                    </Button> 
                     <Button type='button' className='Special-Btn' value="=" onClick={handleArithmeticOperator}>
                         =
                     </Button>
