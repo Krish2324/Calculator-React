@@ -34,23 +34,31 @@ function Calculator() {
                 }
             }
 
-            else if(["+","-","/","*","."].includes(value)){
+            else if(["+","-","/","*"].includes(value)){
                 if(input){
                     const LastChar = input.slice(-1);
-                    if(["+","-","/","*","."].includes(LastChar)){
+                    if(["+","-","/","*"].includes(LastChar)){
                         setInput(input.slice(0,-1) + value)
                     }else{
                         setInput(input + value)
                     }
                 }
             }
-    }
+
+              
+    }       
 
     const handleBackspace=()=>{
         if (input.length > 0) {
         setInput((input)=>input.slice(0,-1))            
         }
     }
+
+    // const handleDot = (e) =>{
+    //     const value = e.target.value;
+    //     const lastChar = input.slice(-1);
+    //         if 
+    // }
 
 
     return ( 
