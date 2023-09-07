@@ -34,16 +34,47 @@ function Calculator() {
                 }
             }
 
-            else if(["+","-","/","*"].includes(value)){
+            else if(["+","-","/","*","%"].includes(value)){
                 if(input){
                     const LastChar = input.slice(-1);
-                    if(["+","-","/","*"].includes(LastChar)){
+                    if(["+","-","/","*","%"].includes(LastChar)){
                         setInput(input.slice(0,-1) + value)
                     }else{
                         setInput(input + value)
                     }
                 }
             }
+
+            if (value === "=") {
+            if (input) {
+              // Regular expression to match percentages (e.g., "50%2")
+              const percentageRegex = /^(\d+(\.\d+)?)%(\d+(\.\d+)?)$/;
+        
+              if (percentageRegex.test(input)) {
+                
+                try {
+                  const match = input.match(percentageRegex);
+                  const operand1 = parseFloat(match[1]);
+                  const operand2 = parseFloat(match[3]);
+                  const result = (operand1 / 100) * operand2;
+                  setOutput(result);
+                  setInput(input);
+                }
+             catch (error) {
+                  setOutput("Error");
+                  setInput("");
+                }
+              } else {
+                try {
+                  setOutput(eval(input));
+                  setInput(eval(input).toString());
+                } catch (error) {
+                  setOutput("Error");
+                  setInput("");
+                }
+              }
+            }
+          }
 
               
     }       
@@ -54,12 +85,25 @@ function Calculator() {
         }
     }
 
-    // const handleDot = (e) =>{
-    //     const value = e.target.value;
-    //     const lastChar = input.slice(-1);
-    //         if 
-    // }
+    const handleDot = (e) => {
+            const value = e.target.value;
+            const lastChar = input.slice(-1);
+          
+            if (value === '.') {
+              // If the last character is an operator, disallow adding a decimal point
+              if (['+', '-', '*', '/','%','.'].includes(lastChar)) {
+                return;
+              }
+          
+              // If there's already a decimal point in the current number, disallow adding another
+              const currentNumber = input.split(/[\+\-\*\/]/).pop();
+              if (currentNumber.includes('.')) {
+                return;
+              }
+            setInput((input) => input + value);
 
+            }
+        };
 
     return ( 
     <div className = 'Calculator' >
@@ -92,7 +136,7 @@ function Calculator() {
                     <Button type='button' className='Top-Btn' value="PM" onClick={handleArithmeticOperator}>
                         +/-
                     </Button>
-                    <Button type='button' className='Top-Btn' value="%" onClick={handleInput}>
+                    <Button type='button' className='Top-Btn' value="%" onClick={handleArithmeticOperator}>
                         %
                     </Button>
                     <Button type='button' className='Special-Btn' value="" onClick={handleBackspace}>
@@ -138,7 +182,7 @@ function Calculator() {
                         _ 
                     </Button>
                 {/* Fifth line */}
-                    <Button type='button' className='Special-Btn' value="." onClick={handleArithmeticOperator}>
+                    <Button type='button' className='Special-Btn' value="." onClick={handleDot}>
                         .
                     </Button>
                     <Button type='button' className='Normal-Btn' value="0" onClick={handleInput}>
