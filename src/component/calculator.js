@@ -119,11 +119,10 @@ function Calculator() {
                     </span>
                 </div>
             </div>
-
                 <div className = 'Calculator-Input Aligned'>
                     <span>
                         {input ? input: "0"}
-                    
+                        {output}
 
                     </span>
                 </div>
